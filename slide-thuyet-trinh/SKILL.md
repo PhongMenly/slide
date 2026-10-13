@@ -1,6 +1,6 @@
 ---
 name: slide-thuyet-trinh
-description: "Dùng khi người dùng muốn làm slide thuyết trình (bộ slide ôn tập khoá học, slide buổi Zoom, slide pitch, slide báo cáo) theo phong cách Phong Menly: nền trắng, chữ đen, vàng chanh chỉ làm điểm nhấn, mỗi slide một hình vẽ theo đúng nội dung, câu từ khoá neo sát đáy, chữ lấy nguyên văn từ nội dung người dùng đưa. Dựng bằng Artifact loại Slides rồi xuất sang Canva hoặc PPTX."
+description: "Dùng khi người dùng muốn làm slide thuyết trình (bộ slide ôn tập khoá học, slide buổi Zoom, slide pitch, slide báo cáo) theo phong cách Phong Menly: nền trắng, chữ đen, vàng chanh chỉ làm điểm nhấn, mỗi slide một hình vẽ theo đúng nội dung, câu từ khoá neo sát đáy, chữ lấy nguyên văn từ nội dung người dùng đưa. Ba đường dựng: Artifact loại Slides (Claude), file PPTX bằng python-pptx (Codex, ChatGPT chạy lệnh, Claude Code), hoặc một tệp deck.html mở bằng trình duyệt (mọi AI). Xuất sang Canva, PowerPoint hoặc PDF."
 ---
 
 # Slide thuyết trình kiểu Phong Menly
@@ -8,6 +8,21 @@ description: "Dùng khi người dùng muốn làm slide thuyết trình (bộ s
 Skill này đúc kết từ bộ slide "Hành trình 9 buổi Zoom" của KOL AI System (45 slide,
 làm lại hơn chục vòng mới ra đúng ý). Làm theo đúng thứ tự dưới đây thì ra kết quả
 ngay từ vòng đầu.
+
+## Ba đường dựng — chọn theo công cụ đang có
+
+Nguyên tắc, quy trình và mẫu hình vẽ dùng chung cho cả ba; chỉ khác bước xuất ra.
+
+| Đường | Cần gì | Ra cái gì |
+|---|---|---|
+| **A · Artifact Slides** | Claude Code hoặc Claude.ai | Bộ slide bấm xem được, có nút xuất Canva/PPTX. Xem mục 3. |
+| **B · PPTX** | Chạy được lệnh + `pip install python-pptx` | File `.pptx` sửa được từng khối, nhập thẳng Canva. Xem `references/pptx.md`. |
+| **C · deck.html** | Chỉ cần trình duyệt | Một tệp HTML bấm đúp là mở, in ra PDF. Xem `references/deck-html.md`. |
+
+Không tạo được Artifact (Codex, ChatGPT, Gemini) thì đi đường B nếu chạy được
+lệnh, không thì đường C. **Hỏi người dùng cuối cùng họ cần file gì rồi mới dựng**,
+và nói rõ họ sẽ nhận được dạng nào — đừng hứa bộ slide bấm xem được rồi mới báo
+là không làm được.
 
 ## 1. Sáu nguyên tắc không được phá
 
@@ -48,7 +63,7 @@ thấy họ đã có gì trong tay.
    `references/anh.md`.
 7. **Xuất:** trên trang slide bấm Chia sẻ › Export › Send to Canva, hoặc tải PPTX.
 
-## 3. Cách dựng bằng Artifact loại Slides
+## 3. Cách dựng bằng Artifact loại Slides (Đường A)
 
 - Tạo deck một lần bằng `type_url` của loại Slides và một `title`; các lần sau dùng
   `url` deck trả về. Không tạo deck thứ hai.
@@ -87,3 +102,7 @@ thấy họ đã có gì trong tay.
   slide kết.
 - `references/mau-bieu-do.md` — mười mẫu hình vẽ theo nội dung, kèm mã.
 - `references/anh.md` — nhận ảnh, cắt gọn, tải lên, và những ảnh không dùng.
+- `references/pptx.md` — **Đường B**: dựng thẳng ra file PowerPoint bằng
+  python-pptx, kèm mã `lam-slide.py` và cách viết `noi-dung.json`.
+- `references/deck-html.md` — **Đường C**: khung một tệp `deck.html` có bộ xem
+  bàn phím, in ra PDF được.

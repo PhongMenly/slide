@@ -4,10 +4,22 @@ Skill cho Claude Code để làm slide thuyết trình theo phong cách Phong Me
 chữ đen, vàng chanh làm điểm nhấn, mỗi slide một hình vẽ theo đúng nội dung, chữ lấy
 nguyên văn từ nội dung của bạn.
 
-## Cài đặt
+## Chạy được ở đâu
 
-Cần có Claude Code (bản terminal, desktop hoặc VS Code) đăng nhập tài khoản claude.ai,
-vì skill dựng slide bằng tính năng Artifact.
+Ba đường dựng, dùng chung một khuôn, chỉ khác bước xuất ra:
+
+| Đường | Cần gì | Ra cái gì |
+|---|---|---|
+| **A · Artifact** | Claude Code hoặc Claude.ai | Bộ slide bấm xem được, có nút xuất Canva/PPTX |
+| **B · PPTX** | Chạy được lệnh + `pip install python-pptx` | File `.pptx` sửa được từng khối, nhập thẳng Canva |
+| **C · deck.html** | Chỉ cần trình duyệt | Một tệp HTML, bấm đúp là mở, in ra PDF |
+
+Dùng Claude thì đi đường A. Dùng **Codex, app ChatGPT bản chạy lệnh** thì đi đường
+B — ra file PowerPoint thật, sửa được từng chữ. Dùng **ChatGPT web hay Gemini**
+(chỉ trả lời chữ) thì đi đường C: AI in ra một tệp, bạn lưu thành `deck.html` rồi
+bấm đúp để mở.
+
+## Cài đặt
 
 Chép thư mục `slide-thuyet-trinh` vào thư mục skill của bạn:
 
@@ -66,10 +78,16 @@ sửa và những gì cần bạn quyết.
 
 ### 5. Đưa sang Canva hoặc PowerPoint
 
-Trên trang slide bấm **Chia sẻ › Export**:
+**Đường A** — trên trang slide bấm **Chia sẻ › Export**:
 
 - **Send to Canva** để mở trong Canva.
 - **PPTX** để tải file PowerPoint, sau đó nhập vào Canva hoặc Google Slides.
+
+**Đường B** — đã là file `.pptx` sẵn: mở bằng PowerPoint, hoặc tải lên Canva /
+Google Slides. Đây là cách duy nhất cho ra file **sửa được từng khối chữ**.
+
+**Đường C** — mở `deck.html` rồi bấm `P` (hoặc Ctrl/Cmd + P) → khổ ngang, lề
+None, bật "Background graphics" → Save as PDF. Canva nhập được file PDF này.
 
 ## Câu lệnh mẫu
 
@@ -93,10 +111,12 @@ Trên trang slide bấm **Chia sẻ › Export**:
 
 ```
 slide-thuyet-trinh/
-  SKILL.md                     hướng dẫn cho Claude: nguyên tắc, quy trình, cách đăng
+  SKILL.md                     hướng dẫn cho AI: nguyên tắc, quy trình, ba đường dựng
   references/
     khuon-slide.md             khuôn HTML: bìa, trang mở, slide bài học, trang kết
     mau-bieu-do.md             mười mẫu hình vẽ theo nội dung, kèm mã
     anh.md                     nhận ảnh, cắt gọn, tải lên, ảnh nào không dùng
+    pptx.md                    đường B: dựng thẳng ra PowerPoint, kèm mã lam-slide.py
+    deck-html.md               đường C: một tệp deck.html có bộ xem bàn phím
 ```
 
